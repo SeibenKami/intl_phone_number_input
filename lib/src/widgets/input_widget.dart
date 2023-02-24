@@ -395,29 +395,29 @@ class _InputWidgetView
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SelectorButton(
-                  country: state.country,
-                  countries: state.countries,
-                  onCountryChanged: state.onCountryChanged,
-                  selectorConfig: widget.selectorConfig,
-                  selectorTextStyle: widget.selectorTextStyle,
-                  searchBoxDecoration: widget.searchBoxDecoration,
-                  locale: state.locale,
-                  isEnabled: widget.isEnabled,
-                  autoFocusSearchField: widget.autoFocusSearch,
-                  isScrollControlled: widget.countrySelectorScrollControlled,
-                ),
-                SizedBox(
-                  height: state.selectorButtonBottomPadding,
-                ),
-              ],
-            ),
-            SizedBox(width: widget.spaceBetweenSelectorAndTextField),
-          ],
+          // if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
+          //   Column(
+          //     mainAxisSize: MainAxisSize.min,
+          //     children: <Widget>[
+          //       SelectorButton(
+          //         country: state.country,
+          //         countries: state.countries,
+          //         onCountryChanged: state.onCountryChanged,
+          //         selectorConfig: widget.selectorConfig,
+          //         selectorTextStyle: widget.selectorTextStyle,
+          //         searchBoxDecoration: widget.searchBoxDecoration,
+          //         locale: state.locale,
+          //         isEnabled: widget.isEnabled,
+          //         autoFocusSearchField: widget.autoFocusSearch,
+          //         isScrollControlled: widget.countrySelectorScrollControlled,
+          //       ),
+          //       SizedBox(
+          //         height: state.selectorButtonBottomPadding,
+          //       ),
+          //     ],
+          //   ),
+          //   SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+          // ],
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
@@ -430,7 +430,32 @@ class _InputWidgetView
               keyboardType: widget.keyboardType,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
-              decoration: state.getInputDecoration(widget.inputDecoration),
+              decoration: InputDecoration(
+                prefixIcon: SelectorButton(
+                  country: state.country,
+                  countries: state.countries,
+                  onCountryChanged: state.onCountryChanged,
+                  selectorConfig: widget.selectorConfig,
+                  selectorTextStyle: widget.selectorTextStyle,
+                  searchBoxDecoration: widget.searchBoxDecoration,
+                  locale: state.locale,
+                  isEnabled: widget.isEnabled,
+                  autoFocusSearchField: widget.autoFocusSearch,
+                  isScrollControlled: widget.countrySelectorScrollControlled,
+                ),
+                hintText: 'Phone',
+                hintStyle: TextStyle(color: CustomColors.grey, fontSize: 16),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: CustomColors.grey)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: CustomColors.grey)),
+                disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: CustomColors.grey)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: CustomColors.grey)),
+                errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: CustomColors.red)),
+              ),
               textAlign: widget.textAlign,
               textAlignVertical: widget.textAlignVertical,
               onEditingComplete: widget.onSubmit,
